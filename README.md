@@ -12,17 +12,17 @@ The token must be stored in a persistent volume.
 On the container path for this volume is `/github-salto/data`.
 
 ```sh
-$ docker run -ti -v /opt/github-salto:/github-salto/data robhaswell/github-salto bin/cm graph auth
+$ docker run -ti -v /opt/github-salto:/github-salto/data robhaswell/github-salto auth
 Github username: ***
 Github password: ***
 ```
 
-To generate a dependency graph use `bin/cm graph create <username> <repository>`.
+To generate a dependency graph use `create <username> <repository>`.
 The output can be piped to `dot` to output a PDF file.
 
 ```sh
 $ docker run -v /opt/github-salto:/github-salto/data \
-    robhaswell/github-salto bin/cm graph auth myusername myrepository \
+    robhaswell/github-salto create myusername myrepository \
     | docker run -i robhaswell/dot -T pdf > graph.pdf
 ```
 
