@@ -12,4 +12,11 @@ WORKDIR /github-salto
 RUN curl -sS https://getcomposer.org/installer | php
 RUN php composer.phar install
 
+RUN adduser --system github_salto
+RUN mkdir data tmp
+RUN chown github_salto data tmp
+USER github_salto
+
 VOLUME /github-salto/data
+
+ENTRYPOINT ["bin/cm", "graph"]
